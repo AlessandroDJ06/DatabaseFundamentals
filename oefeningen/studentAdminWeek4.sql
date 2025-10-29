@@ -122,7 +122,7 @@ SELECT s.student_id,s.last_name,s.first_name,e.section_id,CONCAT(g.grade_type_co
 FROM enrollments e
 JOIN students s ON s.student_id = e.student_id
 JOIN grades g ON g.student_id = s.student_id
-WHERE s.zip LIKE '10956' AND UPPER(g.grade_type_code) LIKE 'QZ'
+WHERE s.zip LIKE '10956' AND UPPER(g.grade_type_code) LIKE 'QZ';
 
 --oef17
 SELECT s.course_no,s.section_no,i.first_name,i.last_name
@@ -139,11 +139,45 @@ JOIN courses p ON c.prerequisite = p.course_no
 ORDER BY c.course_no;
 
 --oef20
+SELECT DISTINCT s.student_id,s.last_name,s.street_address
+FROM students s
+JOIN students st ON s.zip = st.zip AND UPPER(s.street_address) LIKE UPPER(st.street_address) AND s.student_id != st.student_id
+ORDER BY s.street_address;
+
+
+--oef21
 SELECT DISTINCT i.first_name ,i.last_name,z.zip
 FROM instructors i
 JOIN instructors z ON i.zip = z.zip AND i.instructor_id < z.instructor_id
 ORDER BY z.zip,i.first_name;
 
---oef21
+--oef22
+SELECT s.section_id,TO_CHAR(s.start_date_time,'DD-MON-YYYY') AS starttijd,s.location
+FROM sections s
+JOIN sections se ON se.location = s.location AND se.start_date_time = s.start_date_time AND se.section_id != s.section_id
+ORDER BY starttijd;
+
+--oef23
+SELECT g2.student_id,s2.last_name,s2.first_name
+FROM students s1
+JOIN grades g1 ON s1.student_id =g1.student_id
+JOIN grades g2 ON (g2.section_id=g1.section_id AND  g2.GRADE_TYPE_CODE=g1.GRADE_TYPE_CODE)
+JOIN students s2 ON (g2.student_id =s2.student_id)
+WHERE UPPER(s1.last_name)='MARTIN'
+  AND UPPER(s1.first_name)='MARIA'
+  AND g1.section_id=95
+  AND g1.grade_type_code='FI'
+  AND g2.numeric_grade<g1.numeric_grade
+ORDER BY student_id DESC;
+
+--oef24
+SELECT DISTINCT g.student_id,mt.numeric_grade AS Midterm_Grade,f.numeric_grade AS Final_Grade
+FROM grades g
+JOIN grades mt ON mt.student_id = g.student_id
+JOIN grades f ON f.student_id = g.student_id
+WHERE mt.grade_type_code LIKE 'MT' AND f.grade_type_code LIKE 'FI' AND mt.numeric_grade > f.numeric_grade AND mt.section_id = 99
+ORDER BY student_id;
+
+
 
 
