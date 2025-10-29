@@ -165,3 +165,17 @@ FROM employees
 ORDER BY birth_date ASC
 LIMIT 3;
 
+SELECT p.project_name, t.employee_id,e.first_name,e.last_name,t.hours,e.birth_date,AGE(e.birth_date) AS age_employee
+
+FROM  projects p
+
+         JOIN  tasks t ON  p.project_id  = t.project_id
+
+JOIN  employees e ON e.employee_id = t.employee_id
+
+WHERE e.employee_id IN ('999111111','999555555','999222222')
+
+ORDER BY hours ASC
+
+    FETCH FIRST 3 ROWS ONLY;
+
