@@ -2,6 +2,7 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/oefeningen/StudentAdminWeek3.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/oefeningen/StudentAdminWeek5.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/oefeningen/part01.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/oefeningen/studentAdminWeek2.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/oefeningen/studentAdminWeek4.sql" dialect="PostgreSQL" />
