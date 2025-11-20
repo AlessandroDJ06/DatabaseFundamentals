@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourcePerFileMappings">
+    <file url="file://$PROJECT_DIR$/oefeningen/StudentAdminUitbreiding.sql" value="17bf94b6-03eb-4604-a50e-af905b778543" />
     <file url="file://$PROJECT_DIR$/oefeningen/StudentAdminWeek3.sql" value="17bf94b6-03eb-4604-a50e-af905b778543" />
     <file url="file://$PROJECT_DIR$/oefeningen/StudentAdminWeek5.sql" value="17bf94b6-03eb-4604-a50e-af905b778543" />
     <file url="file://$PROJECT_DIR$/oefeningen/part01.sql" value="17bf94b6-03eb-4604-a50e-af905b778543" />
@@ -9,6 +10,7 @@
     <file url="file://$PROJECT_DIR$/oefeningen/week2Oefeningen.sql" value="17bf94b6-03eb-4604-a50e-af905b778543" />
     <file url="file://$PROJECT_DIR$/oefeningen/week3oefeningen.sql" value="17bf94b6-03eb-4604-a50e-af905b778543" />
     <file url="file://$PROJECT_DIR$/oefeningen/week4oefeningen.sql" value="17bf94b6-03eb-4604-a50e-af905b778543" />
+    <file url="file://$PROJECT_DIR$/oefeningen/week7oefeningenenterprise.sql" value="17bf94b6-03eb-4604-a50e-af905b778543" />
     <file url="file://$PROJECT_DIR$/scripts/_pg_ENTERPRISE_BIG_EN.sql" value="17bf94b6-03eb-4604-a50e-af905b778543" />
     <file url="file://$PROJECT_DIR$/scripts/_pg_FILL_SA.sql" value="17bf94b6-03eb-4604-a50e-af905b778543" />
     <file url="file://$PROJECT_DIR$/theorie/SELECT_basics_and_fetch.sql" value="17bf94b6-03eb-4604-a50e-af905b778543" />

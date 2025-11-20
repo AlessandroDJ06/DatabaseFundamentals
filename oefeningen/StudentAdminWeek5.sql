@@ -16,7 +16,7 @@ SELECT DISTINCT MAX(cost)
 FROM courses;
 
 --oef3
-SELECT MIN(enroll_date) AS First, MAX(enroll_date) AS most_recent
+SELECT MIN(enroll_date) AS First, MAX(enroll_date) AS most_recent,COUNT(enroll_date)
 FROM enrollments;
 
 --oef4
