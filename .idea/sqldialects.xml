@@ -4,6 +4,11 @@
     <file url="file://$PROJECT_DIR$/oefeningen/StudentAdminUitbreiding.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/oefeningen/StudentAdminWeek3.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/oefeningen/StudentAdminWeek5.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/oefeningen/StudentAdminWeek7.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/oefeningen/Week10Oefeningen.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/oefeningen/Week11Oefeningen.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/oefeningen/Week8Oefeningen.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/oefeningen/Week9oefeningen.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/oefeningen/part01.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/oefeningen/studentAdminWeek2.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/oefeningen/studentAdminWeek4.sql" dialect="PostgreSQL" />
@@ -11,10 +16,10 @@
     <file url="file://$PROJECT_DIR$/oefeningen/week3oefeningen.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/oefeningen/week4oefeningen.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/oefeningen/week7oefeningenenterprise.sql" dialect="PostgreSQL" />
-    <file url="file://$PROJECT_DIR$/scripts/_pg_CRE_ENTERPRISE_EN.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/scripts/_pg_CRE_SA.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/scripts/_pg_CRE_ENTERPRISE_EN.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/scripts/_pg_CRE_SA.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/scripts/_pg_ENTERPRISE_BIG_EN.sql" dialect="PostgreSQL" />
-    <file url="file://$PROJECT_DIR$/scripts/_pg_FILL_ENTERPRISE_EN.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/scripts/_pg_FILL_ENTERPRISE_EN.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/scripts/_pg_FILL_SA.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/theorie/SELECT_basics_and_fetch.sql" dialect="PostgreSQL" />
   </component>
