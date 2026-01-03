@@ -256,9 +256,28 @@ FROM sections
 WHERE section_id BETWEEN 80 AND 89;
 
 --B
-SELECT section_id,concat(to_char(start_date_time,'day'),' ',start_date_time)
+SELECT section_id,start_date_time,
+    CASE to_char(start_date_time,'fmday')
+        WHEN 'tuesday' THEN to_char(start_date_time+6,'DD-MM-YYYY fmday')
+        WHEN 'wednesday' THEN to_char(start_date_time+5,'DD-MM-YYYY fmday')
+        WHEN 'thursday' THEN to_char(start_date_time+4,'DD-MM-YYYY fmday')
+        WHEN 'friday' THEN to_char(start_date_time+3,'DD-MM-YYYY fmday')
+        WHEN 'saturday' THEN to_char(start_date_time+2,'DD-MM-YYYY fmday')
+        WHEN 'sunday' THEN to_char(start_date_time+1,'DD-MM-YYYY fmday')
+    ELSE to_char(start_date_time,'DD-MM-YYYY fmday')
+    END AS new_start_date
 FROM sections
-WHERE to_char(start_date_time,'day') = 'monday' AND section_id BETWEEN 80 AND 89;
---oef25
+WHERE section_id BETWEEN 80 AND 89;
 
-SELECT
+--oef25
+--a
+SELECT student_id,section_id,TO_CHAR(enroll_date,'DD month YYYY')
+FROM enrollments
+WHERE section_id = 117
+
+--b
+SELECT student_id,section_id,TO_CHAR(enroll_date,'"The "DDth" in the "WWth" week of the year "YYYY')
+FROM enrollments
+WHERE section_id = 117
+
+
