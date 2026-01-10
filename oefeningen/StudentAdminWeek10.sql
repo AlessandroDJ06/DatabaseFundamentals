@@ -259,3 +259,108 @@ VALUES (
        );
 
 SELECT * FROM enrollments ORDER BY created_date desc;
+
+--oef15
+UPDATE sections
+SET location='L909'
+WHERE section_id IN (SELECT section_id
+                     FROM enrollments
+                     GROUP BY section_id
+                     HAVING COUNT(*)>10);
+
+--oef16
+UPDATE grades g
+SET numeric_grade = (SELECT AVG(numeric_grade)
+                     FROM grades
+                     WHERE UPPER(grade_type_code) = 'PA' AND section_id=g.section_id)
+WHERE grade_type_code='PA' AND
+    section_id IN (
+    SELECT section_id
+    FROM sections
+    WHERE course_no IN (    SELECT courses.course_no
+                            FROM courses
+                            WHERE UPPER(description) LIKE 'INTRO%TO%INFORMATION%SYSTEMS')
+
+    );
+
+UPDATE grades g
+SET numeric_grade=(SELECT AVG(numeric_grade)
+                   FROM grades
+                   WHERE section_id=g.section_id AND grade_type_code='PA')
+WHERE grade_type_code='PA'
+  AND section_id IN (SELECT section_id
+                     FROM sections s
+                              JOIN courses c ON (s.course_no=c.course_no)
+                     WHERE UPPER(description) = 'INTRO TO INFORMATION SYSTEMS');
+
+--oef17
+ALTER TABLE sections
+    ALTER COLUMN instructor_id DROP NOT NULL;
+
+SELECT * from sections;
+
+--a
+UPDATE sections
+SET instructor_id = (SELECT instructor_id
+                     FROM instructors
+                     WHERE UPPER(CONCAT(first_name,' ',last_name)) = 'NINA SCHORIN'
+                     )
+WHERE course_no IN (
+    SELECT course_no
+    FROM courses
+    WHERE UPPER(description) LIKE '%JAVA%'
+    ) AND
+    instructor_id = (SELECT instructor_id
+                     FROM instructors
+                     WHERE UPPER(last_name)= 'HANKS');
+
+--b
+UPDATE sections
+SET instructor_id = null
+WHERE instructor_id = (SELECT instructor_id
+                       FROM instructors
+                       WHERE UPPER(last_name)= 'HANKS');
+--c
+DELETE FROM instructors
+WHERE instructor_id = (SELECT instructor_id
+                       FROM instructors
+                       WHERE UPPER(last_name)= 'HANKS');
+
+--18
+CREATE TABLE diligent_students
+AS
+SELECT student_id,First_name,last_name
+FROM students;
+
+--a
+DELETE FROM diligent_students;
+SELECT * FROM diligent_students;
+
+--b
+INSERT INTO diligent_students
+SELECT student_id,first_name,last_name
+FROM students
+WHERE student_id IN (
+    SELECT student_id
+    FROM enrollments
+    GROUP BY student_id
+    HAVING COUNT(*) > (
+        SELECT AVG(count)
+        FROM (
+            SELECT count(*)
+            FROM enrollments
+            GROUP BY student_id) AS count
+             )
+        );
+
+
+INSERT INTO diligent_students
+SELECT s.student_id,s.first_name,s.last_name
+FROM students s
+         JOIN enrollments e ON (e.student_id=s.student_id)
+GROUP BY S.student_id,S.first_name,S.last_name
+HAVING COUNT(*)> (SELECT AVG(count_x.count)
+                  FROM (SELECT count(*) as count
+                        FROM enrollments
+                        GROUP BY student_id) as count_x);
+SELECT * FROM diligent_students
