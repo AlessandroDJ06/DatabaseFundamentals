@@ -61,17 +61,64 @@ CREATE TABLE ticket (
 );
 
 --deel2
-INSERT INTO festival (festival_id,name,location,start_date,end_date)
-VALUES (1,'Summer Fest','Belgium','2026-07-10','2026-07-12');
+-- Festivals
+INSERT INTO festival (festival_id, name, location, start_date, end_date)
+VALUES
+    (1, 'Summer Fest', 'Netherlands', '2026-07-10', '2026-07-12'),
+    (2, 'Winter Jam', 'Belgium', '2026-12-01', '2026-12-03');
+INSERT INTO festival (festival_id, name, location, start_date, end_date)
+VALUES (3, 'October Fest', 'Belgium', '2026-10-01', '2026-10-03');
 
+
+-- Artists
 INSERT INTO artist (artist_id, name, country, genre)
-VALUES (1, 'Daft Punk', 'France', 'Electronic');
+VALUES
+    (1, 'Daft Punk', 'France', 'Electronic'),
+    (2, 'Coldplay', 'UK', 'Pop'),
+    (3, 'Adele', 'UK', 'Pop'),
+    (4, 'Martin Garrix', 'Netherlands', 'EDM');
 
-INSERT INTO artist (artist_id, name, country, genre)
-VALUES (2, 'Coldplay', 'UK', 'Pop');
-
+-- Stages
 INSERT INTO stage (stage_id, festival_id, name, capacity)
-VALUES (1, 1, 'Main Stage', 20000);
+VALUES
+    (1, 1, 'Main Stage', 20000),
+    (2, 1, 'Second Stage', 10000),
+    (3, 2, 'Winter Stage', 15000);
+
+-- Performances
+INSERT INTO performance (performance_id, artist_id, stage_id, start_time, end_time)
+VALUES
+    (1, 1, 1, '2026-07-10 18:00', '2026-07-10 20:00'),
+    (2, 2, 1, '2026-07-11 19:00', '2026-07-11 21:00'),
+    (3, 3, 2, '2026-07-12 17:00', '2026-07-12 19:00'),
+    (4, 4, 3, '2026-12-01 20:00', '2026-12-01 22:00');
+
+-- Ticket Types
+INSERT INTO ticket_type (ticket_type_id, festival_id, name, price)
+VALUES
+    (1, 1, 'Standard', 100),
+    (2, 1, 'VIP', 250),
+    (3, 2, 'Standard', 120);
+
+-- Visitors
+INSERT INTO visitor (visitor_id, name, email, birth_date, phone)
+VALUES
+    (1, 'Alice', 'alice@mail.com', '2000-05-01', '0123456789'),
+    (2, 'Bob', NULL, '1998-09-20', NULL),
+    (3, 'Charlie', 'charlie@mail.com', '2001-02-15', '0987654321'),
+    (4, 'Diana', NULL, '1995-12-30', NULL);
+
+
+-- Tickets
+INSERT INTO ticket (ticket_id, visitor_id, ticket_type_id, purchase_date, used)
+VALUES
+    (1, 1, 1, '2026-06-01', TRUE),
+    (2, 2, 2, '2026-06-05', FALSE),
+    (3, 3, 1, '2026-06-10', NULL),
+    (4, 4, 3, '2026-11-15', TRUE);
+
+DELETE FROM ticket
+WHERE visitor_id = 4
 
 --deel3
 --A)
@@ -121,6 +168,32 @@ SELECT ticket_id,
            WHEN false THEN 'unused'
            ELSE 'unknown'
        END AS status
-FROM ticket
+FROM ticket;
+--deel7
+--A)
+SELECT *
+FROM artist a
+WHERE EXISTS(
+    SELECT *
+    FROM performance p
+    WHERE a.artist_id = p.artist_id
+);
+--B)
+SELECT *
+FROM visitor v
+WHERE NOT EXISTS(
+    SELECT *
+    FROM  ticket t
+    WHERE v.visitor_id = t.visitor_id
+);
+--C)
+SELECT *
+FROM festival f
+WHERE NOT EXISTS(
+    SELECT *
+    FROM ticket_type t
+    WHERE t.festival_id = f.festival_id
+);
+
 
 
