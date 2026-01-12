@@ -195,5 +195,22 @@ WHERE NOT EXISTS(
     WHERE t.festival_id = f.festival_id
 );
 
+--deel8
+--A)
+SELECT f.name, (SELECT count(*)
+                FROM stage s
+                 WHERE f.festival_id = s.festival_id)
+FROM festival f;
+--B)
+SELECT a.name,(SELECT count(*)
+               FROM performance p
+               WHERE a.artist_id = p.artist_id)
+FROM artist a;
+--C)
+SELECT v.name,(SELECT count(*)
+               FROM ticket t
+               WHERE v.visitor_id = t.visitor_id)
+FROM visitor v
+
 
 
