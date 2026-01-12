@@ -60,3 +60,40 @@ CREATE TABLE ticket (
     CONSTRAINT fk_ticket_type_id_ticket FOREIGN KEY (ticket_type_id) REFERENCES ticket_type(ticket_type_id)
 );
 
+--deel2
+INSERT INTO festival (festival_id,name,location,start_date,end_date)
+VALUES (1,'Summer Fest','Belgium','2026-07-10','2026-07-12');
+
+INSERT INTO artist (artist_id, name, country, genre)
+VALUES (1, 'Daft Punk', 'France', 'Electronic');
+
+INSERT INTO artist (artist_id, name, country, genre)
+VALUES (2, 'Coldplay', 'UK', 'Pop');
+
+INSERT INTO stage (stage_id, festival_id, name, capacity)
+VALUES (1, 1, 'Main Stage', 20000);
+
+--deel3
+--A)
+SELECT *
+FROM festival;
+--B)
+SELECT name
+FROM artist;
+--C)
+SELECT stage_id , f.festival_id ,f.name
+FROM stage s
+JOIN festival f on s.festival_id = f.festival_id
+
+--deel4
+--A)
+UPDATE festival
+SET location = 'Netherlands'
+WHERE UPPER(name) = 'SUMMER FEST';
+--B)
+UPDATE stage
+SET capacity = capacity + 5000
+WHERE UPPER(name) = 'MAIN STAGE';
+--C)
+DELETE FROM artist
+WHERE UPPER(name) = 'COLDPLAY'
