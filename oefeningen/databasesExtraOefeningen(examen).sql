@@ -110,5 +110,17 @@ UNIQUE (email);
 ALTER TABLE ticket_type
 ADD CONSTRAINT ch_price_ticket_type
 CHECK ( price > 0 );
+--deel6
+--A)
+SELECT name,COALESCE(email,'no email')
+FROM visitor;
+--B)
+SELECT ticket_id,
+       CASE used
+           WHEN true THEN 'used'
+           WHEN false THEN 'unused'
+           ELSE 'unknown'
+       END AS status
+FROM ticket
 
 
