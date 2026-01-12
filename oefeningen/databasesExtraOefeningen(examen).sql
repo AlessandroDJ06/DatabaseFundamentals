@@ -96,4 +96,19 @@ SET capacity = capacity + 5000
 WHERE UPPER(name) = 'MAIN STAGE';
 --C)
 DELETE FROM artist
-WHERE UPPER(name) = 'COLDPLAY'
+WHERE UPPER(name) = 'COLDPLAY';
+
+--deel5
+--A)
+ALTER TABLE visitor
+ADD COLUMN phone VARCHAR(20);
+--B)
+ALTER TABLE visitor
+ADD CONSTRAINT un_email_visitors
+UNIQUE (email);
+--C)
+ALTER TABLE ticket_type
+ADD CONSTRAINT ch_price_ticket_type
+CHECK ( price > 0 );
+
+
