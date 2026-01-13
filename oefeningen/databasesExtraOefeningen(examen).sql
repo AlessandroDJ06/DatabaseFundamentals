@@ -161,6 +161,8 @@ CHECK ( price > 0 );
 --A)
 SELECT name,COALESCE(email,'no email')
 FROM visitor;
+
+SELECT * FROM visitor;
 --B)
 SELECT ticket_id,
        CASE used
@@ -187,6 +189,15 @@ WHERE NOT EXISTS(
     WHERE v.visitor_id = t.visitor_id
 );
 --C)
+CREATE OR REPLACE VIEW test_view AS
+SELECT * FROM festival;
+
+update test_view
+set end_date = '2026-07-15'
+WHERE festival_id = 1;
+
+SELECT  * FROM festival
+
 SELECT *
 FROM festival f
 WHERE NOT EXISTS(
@@ -194,6 +205,15 @@ WHERE NOT EXISTS(
     FROM ticket_type t
     WHERE t.festival_id = f.festival_id
 );
+
+
+
+SELECT *
+FROM festival
+WHERE festival_id NOT IN (
+    SELECT festival_id
+    FROM ticket_type
+    );
 
 --deel8
 --A)
@@ -210,7 +230,30 @@ FROM artist a;
 SELECT v.name,(SELECT count(*)
                FROM ticket t
                WHERE v.visitor_id = t.visitor_id)
-FROM visitor v
+FROM visitor v;
 
+--deel9
+--A)
+SELECT festival_id,name
+FROM festival
+UNION
+SELECT festival_id,name
+FROM stage;
+--B)
+SELECT *
+FROM artist
+WHERE UPPER(genre) = 'POP'
+INTERSECT
+SELECT *
+FROM artist
+WHERE UPPER(country) = 'UK';
+
+--C)
+SELECT *
+FROM visitor
+EXCEPT
+SELECT *
+FROM visitor
+WHERE email IS NOT NULL;
 
 
